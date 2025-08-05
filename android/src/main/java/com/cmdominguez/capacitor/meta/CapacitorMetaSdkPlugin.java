@@ -1,7 +1,6 @@
 package com.cmdominguez.capacitor.meta;
 
 import android.os.Bundle;
-
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.getcapacitor.JSObject;
@@ -9,7 +8,6 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-
 import java.util.Iterator;
 
 @CapacitorPlugin(name = "CapacitorMetaSdk")
@@ -17,7 +15,6 @@ public class CapacitorMetaSdkPlugin extends Plugin {
 
     @Override
     public void load() {
-
         super.load();
         FacebookSdk.setIsDebugEnabled(true);
     }
@@ -69,5 +66,3 @@ public class CapacitorMetaSdkPlugin extends Plugin {
         logger.logEvent(eventName, eventValues);
     }
 }
-
-
