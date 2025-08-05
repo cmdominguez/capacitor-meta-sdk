@@ -1,6 +1,6 @@
 {
   "name": "capacitor-meta-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "meta sdk capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -15,6 +15,9 @@
     "Package.swift",
     "CapacitorMetaSdk.podspec"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Mariano Dominguez",
   "license": "MIT",
   "repository": {
