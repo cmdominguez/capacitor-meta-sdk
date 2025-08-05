@@ -10,14 +10,28 @@ public class CapacitorMetaSdkPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "CapacitorMetaSdkPlugin"
     public let jsName = "CapacitorMetaSdk"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "logEvent", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = CapacitorMetaSdk()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func logEvent(_ call: CAPPluginCall) {
+        guard let eventName = call.getString("eventName"), !eventName.isEmpty else {
+            call.reject("eventName is required")
+            return
+        }
+        
+        guard let eventValuesObject = call.getObject("eventValues") else {
+            call.reject("eventValues are required")
+            return
+        }
+        
+        // Convert JSObject to Swift Dictionary
+        var eventValues: [String: Any] = [:]
+        for (key, value) in eventValuesObject {
+            eventValues[key] = value
+        }
+        
+        implementation.logEvent(eventName: eventName, eventValues: eventValues)
+        call.resolve()
     }
 }

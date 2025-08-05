@@ -3,8 +3,7 @@ import { WebPlugin } from '@capacitor/core';
 import type { CapacitorMetaSdkPlugin } from './definitions';
 
 export class CapacitorMetaSdkWeb extends WebPlugin implements CapacitorMetaSdkPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  async logEvent(options: { eventName: string; eventValues?: Record<string, any> }): Promise<void> {
+    console.log(`Event logged: ${options.eventName}`, options.eventValues);
   }
 }

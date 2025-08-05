@@ -1,3 +1,3 @@
 export interface CapacitorMetaSdkPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  logEvent(options: { eventName: string; eventValues?: Record<string, any> }): Promise<void>;
 }
